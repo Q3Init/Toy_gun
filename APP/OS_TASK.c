@@ -6,6 +6,7 @@
 #include "stm32f10x_gpio.h"
 #include "Lib_Log_Util.h"
 #include "MCAL_GPIO.h"
+#include "App_test.h"
 
 OS_LOCAL uint8 Os_TaskHdl_Lv0_Task0(void)
 {
@@ -32,6 +33,7 @@ OS_LOCAL uint8 Os_TaskHdl_Lv0_Task3(void)
 {
     uint8 ret = OS_RET_OK;
     MCAL_GPIO_FlipcBit(GPIOC,GPIO_Pin_13);
+    APP_test_mainfunction();
     return ret;
 }
 

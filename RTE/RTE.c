@@ -7,6 +7,7 @@
 #include "sys.h"
 #include "MCAL_GPIO.h"
 #include "MCAL_Uart.h"
+#include "App_test.h"
 
 static volatile boolean rteBswRdyFlg = FALSE;
 void RTE_Init(void)
@@ -24,8 +25,9 @@ void RTE_Init(void)
     MCAL_GPIO_Init();
     MCAL_Uart_Init();
     /* BSW Init */
-
+    
     /* application Init */
+    APP_test_init();
 
     rteBswRdyFlg = TRUE; /* Init complete flag */
     __ENABLE_IRQ(); /* chip enable irq */

@@ -398,6 +398,11 @@
               <FileType>1</FileType>
               <FilePath>..\FreeRTOS_TASK.c</FilePath>
             </File>
+            <File>
+              <FileName>APP_test.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\applications\APP_test.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -679,6 +684,13 @@
         </Group>
         <Group>
           <GroupName>ext-driver</GroupName>
+          <Files>
+            <File>
+              <FileName>Ext_MPU6050.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\ext-driver\Ext_MPU6050.c</FilePath>
+            </File>
+          </Files>
         </Group>
       </Groups>
     </Target>
