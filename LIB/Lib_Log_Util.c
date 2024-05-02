@@ -23,15 +23,8 @@ LOG_LEVEL g_log_level = LOG_DEBUG;
 void sys_uart1_sendchar(uint8 data)
 {
 	/* Loop until the end of transmission */
-    while (USART_ReadStatusFlag(USART1, USART_FLAG_TXBE) == RESET);
-    USART_TxData(USART1, data);	
-}
-
-void sys_uart2_sendchar(uint8 data)
-{
-	/* Loop until the end of transmission */
-    while (USART_ReadStatusFlag(USART2, USART_FLAG_TXBE) == RESET);
-    USART_TxData(USART2, data);
+    USART_SendData(USART1, data);	
+    while (USART_GetFlagStatus(USART1, USART_FLAG_TC) == RESET);
 }
 
 int HAL_Snprintf(_IN_ char *str, const int len, const char *fmt, ...)

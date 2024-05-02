@@ -6,5 +6,6 @@
 #include "stm32f10x_gpio.h"
 
 extern void MCAL_GPIO_Init(void);
+extern void MCAL_GPIO_FlipcBit(GPIO_TypeDef* port, uint16_t pin);
 
 #endif

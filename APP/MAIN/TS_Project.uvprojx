@@ -337,7 +337,7 @@
             <v6Rtti>0</v6Rtti>
             <VariousControls>
               <MiscControls></MiscControls>
-              <Define>STM32F10X_MD,USE_STDPERIPH_DRIVER,EASY_OS</Define>
+              <Define>STM32F10X_MD,USE_STDPERIPH_DRIVER,EASY_OS,DEBUG_INFO_ENABLE</Define>
               <Undefine></Undefine>
               <IncludePath>..\main;..\applications;..\..\OS\OS_Driver;..\..\OS\OS_Task;..\..\RTE;..\..\TYPES;..\..\RTE;..\..\LIB;..\..\BSW;..\..\Cfg\BSW_Cfg;..\..\MCAL;..\..\ext-driver;..\..\Cfg\MCAL_Cfg;..\..\APP;..\..\DRIVER\Chip_Driver\STM32F1\Library\Driver\CMSIS;..\..\DRIVER\Chip_Driver\STM32F1\Library\Standard_Library\inc;..\..\DRIVER\Chip_Driver\STM32F1\User_Interface;..\..\OS\FreeRTOS\Source\include;..\..\OS\FreeRTOS\Source\portable\MemMang;..\..\OS\FreeRTOS\Source\portable\RVDS\ARM_CM3;..\..\DRIVER\Chip_Driver\STM32F1\sys_bitBand</IncludePath>
             </VariousControls>
@@ -651,6 +651,11 @@
               <FileType>1</FileType>
               <FilePath>..\..\MCAL\MCAL_GPIO.c</FilePath>
             </File>
+            <File>
+              <FileName>MCAL_Uart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\MCAL\MCAL_Uart.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -664,6 +669,13 @@
         </Group>
         <Group>
           <GroupName>LIB</GroupName>
+          <Files>
+            <File>
+              <FileName>Lib_Log_Util.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\LIB\Lib_Log_Util.c</FilePath>
+            </File>
+          </Files>
         </Group>
         <Group>
           <GroupName>ext-driver</GroupName>

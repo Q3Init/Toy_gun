@@ -12,3 +12,9 @@ void MCAL_GPIO_Init(void)
     GPIO_SetBits(GPIOC,GPIO_Pin_13);						 //PB.5 输出高
 }
 
+void MCAL_GPIO_FlipcBit(GPIO_TypeDef* port, uint16_t pin)
+{
+    uint8_t level = GPIO_ReadInputDataBit(port, pin);
+    level = (level>0)? 0 : 1;
+    GPIO_WriteBit(port, pin, (BitAction)level);
+}

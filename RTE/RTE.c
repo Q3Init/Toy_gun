@@ -6,6 +6,7 @@
 #include "stm32f10x.h"
 #include "sys.h"
 #include "MCAL_GPIO.h"
+#include "MCAL_Uart.h"
 
 static volatile boolean rteBswRdyFlg = FALSE;
 void RTE_Init(void)
@@ -21,6 +22,7 @@ void RTE_Init(void)
 #endif
     /* MCAL Init */
     MCAL_GPIO_Init();
+    MCAL_Uart_Init();
     /* BSW Init */
 
     /* application Init */

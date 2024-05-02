@@ -5,8 +5,8 @@
 #include <string.h>
 #include <stdarg.h>
 
-#include "MCAL_APM32.h"
-#include "MCAL_Cfg_UART.h"
+#include "stm32f10x.h"
+#include "Platform_Types.h"
 
 #ifdef DEBUG_INFO_ENABLE
 #define Log_d(args...) Log_writter(__FILE__, __FUNCTION__, __LINE__, LOG_DEBUG, args)
@@ -14,7 +14,7 @@
 #define Log_w(args...) Log_writter(__FILE__, __FUNCTION__, __LINE__, LOG_WARN, args)
 #define Log_e(args...) Log_writter(__FILE__, __FUNCTION__, __LINE__, LOG_ERROR, args)
 
-#define send_char(a)		sys_uart2_sendchar(a)
+#define send_char(a)		sys_uart1_sendchar(a)
 
 #define 	_IN_            /* 表明这是一个输入参数. */
 #define		_OU_            /* 表明这是一个输出参数. */
