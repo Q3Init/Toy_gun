@@ -339,7 +339,7 @@
               <MiscControls></MiscControls>
               <Define>STM32F10X_MD,USE_STDPERIPH_DRIVER,EASY_OS,DEBUG_INFO_ENABLE</Define>
               <Undefine></Undefine>
-              <IncludePath>..\main;..\applications;..\..\OS\OS_Driver;..\..\OS\OS_Task;..\..\RTE;..\..\TYPES;..\..\RTE;..\..\LIB;..\..\BSW;..\..\Cfg\BSW_Cfg;..\..\MCAL;..\..\ext-driver;..\..\Cfg\MCAL_Cfg;..\..\APP;..\..\DRIVER\Chip_Driver\STM32F1\Library\Driver\CMSIS;..\..\DRIVER\Chip_Driver\STM32F1\Library\Standard_Library\inc;..\..\DRIVER\Chip_Driver\STM32F1\User_Interface;..\..\OS\FreeRTOS\Source\include;..\..\OS\FreeRTOS\Source\portable\MemMang;..\..\OS\FreeRTOS\Source\portable\RVDS\ARM_CM3;..\..\DRIVER\Chip_Driver\STM32F1\sys_bitBand;..\..\ext-driver\MPU6050;..\..\ext-driver\MPU6050\IIC;..\..\ext-driver\MPU6050\DMP</IncludePath>
+              <IncludePath>..\main;..\applications;..\..\OS\OS_Driver;..\..\OS\OS_Task;..\..\RTE;..\..\TYPES;..\..\RTE;..\..\LIB;..\..\BSW;..\..\Cfg\BSW_Cfg;..\..\MCAL;..\..\ext-driver;..\..\Cfg\MCAL_Cfg;..\..\APP;..\..\DRIVER\Chip_Driver\STM32F1\Library\Driver\CMSIS;..\..\DRIVER\Chip_Driver\STM32F1\Library\Standard_Library\inc;..\..\DRIVER\Chip_Driver\STM32F1\User_Interface;..\..\OS\FreeRTOS\Source\include;..\..\OS\FreeRTOS\Source\portable\MemMang;..\..\OS\FreeRTOS\Source\portable\RVDS\ARM_CM3;..\..\DRIVER\Chip_Driver\STM32F1\sys_bitBand;..\..\ext-driver\MPU6050;..\..\ext-driver\MPU6050\IIC;..\..\ext-driver\MPU6050\DMP;..\..\ext-driver\OLED</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -709,6 +709,11 @@
               <FileName>inv_mpu_dmp_motion_driver.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\ext-driver\MPU6050\DMP\inv_mpu_dmp_motion_driver.c</FilePath>
+            </File>
+            <File>
+              <FileName>oled.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\ext-driver\OLED\oled.c</FilePath>
             </File>
           </Files>
         </Group>

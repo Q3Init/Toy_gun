@@ -4,6 +4,8 @@
         "platform_types.h": "c",
         "app_test.h": "c",
         "stm32f10x_tim.h": "c",
-        "mcal_timer.h": "c"
+        "mcal_timer.h": "c",
+        "lib_log_util.h": "c",
+        "sys.h": "c"
     }
 }

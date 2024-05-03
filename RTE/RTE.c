@@ -10,6 +10,7 @@
 #include "MCAL_Timer.h"
 #include "App_test.h"
 #include "mpu6050.h"
+#include "OLED.h"
 
 static volatile boolean rteBswRdyFlg = FALSE;
 void RTE_Init(void)
@@ -30,9 +31,12 @@ void RTE_Init(void)
     /* BSW Init */
     
     /* application Init */
+    OLED_Init();
+    OLED_ShowString(40,0,"MPU6050",16);
+    OLED_Refresh();
     IIC_Init();             /* mpu6050 */
-	MPU6050_initialize();   /* mpu6050 */
-	DMP_Init();             /* mpu6050 */
+    MPU6050_initialize();   /* mpu6050 */
+    DMP_Init();             /* mpu6050 */
     APP_test_init();
 
     rteBswRdyFlg = TRUE; /* Init complete flag */
