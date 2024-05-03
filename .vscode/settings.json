@@ -3,6 +3,7 @@
         "stm32f10x.h": "c",
         "platform_types.h": "c",
         "app_test.h": "c",
-        "stm32f10x_tim.h": "c"
+        "stm32f10x_tim.h": "c",
+        "mcal_timer.h": "c"
     }
 }

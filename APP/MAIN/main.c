@@ -13,7 +13,7 @@
 int main(void)
 {
 #ifdef EASY_OS
-	uint8 Priority;
+  uint8 Priority;
 	(void)RTE_Init();
 #else
 	/* 定义一个创建信息返回值，默认为pdPASS */
