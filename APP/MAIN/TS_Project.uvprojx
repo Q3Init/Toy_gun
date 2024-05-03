@@ -661,6 +661,11 @@
               <FileType>1</FileType>
               <FilePath>..\..\MCAL\MCAL_Uart.c</FilePath>
             </File>
+            <File>
+              <FileName>MCAL_Timer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\MCAL\MCAL_Timer.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -684,13 +689,6 @@
         </Group>
         <Group>
           <GroupName>ext-driver</GroupName>
-          <Files>
-            <File>
-              <FileName>Ext_MPU6050.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\ext-driver\Ext_MPU6050.c</FilePath>
-            </File>
-          </Files>
         </Group>
       </Groups>
     </Target>

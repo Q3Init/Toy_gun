@@ -7,6 +7,7 @@
 #include "sys.h"
 #include "MCAL_GPIO.h"
 #include "MCAL_Uart.h"
+#include "MCAL_Timer.h"
 #include "App_test.h"
 
 static volatile boolean rteBswRdyFlg = FALSE;
@@ -24,6 +25,7 @@ void RTE_Init(void)
     /* MCAL Init */
     MCAL_GPIO_Init();
     MCAL_Uart_Init();
+    MCAL_TIMER_Init();
     /* BSW Init */
     
     /* application Init */

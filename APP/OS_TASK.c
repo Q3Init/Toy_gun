@@ -32,14 +32,6 @@ OS_LOCAL uint8 Os_TaskHdl_Lv0_Task2(void)
 OS_LOCAL uint8 Os_TaskHdl_Lv0_Task3(void)
 {
     uint8 ret = OS_RET_OK;
-    MCAL_GPIO_FlipcBit(GPIOC,GPIO_Pin_13);
     APP_test_mainfunction();
     return ret;
 }
-
-void OS_Delay_us(uint32 counter)
-{
-    counter *=9;
-    while(counter--);
-}
-

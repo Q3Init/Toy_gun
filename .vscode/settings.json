@@ -1,6 +1,8 @@
 {
     "files.associations": {
         "stm32f10x.h": "c",
-        "platform_types.h": "c"
+        "platform_types.h": "c",
+        "app_test.h": "c",
+        "stm32f10x_tim.h": "c"
     }
 }
