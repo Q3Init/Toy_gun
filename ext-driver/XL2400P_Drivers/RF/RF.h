@@ -102,7 +102,7 @@ void RFAPIChannelNext(void);
 void RFAPIChannelNext_RX(void);
 
 unsigned char RF_Send_Data(unsigned char *Data_Buff);
-
+unsigned char Rec_Data(unsigned char * dat_buff);
 
 
 

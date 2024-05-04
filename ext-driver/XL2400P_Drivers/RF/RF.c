@@ -215,3 +215,28 @@ unsigned char RF_Send_Data(unsigned char *Data_Buff)
 	return RetVaule;
 }
 
+//接收数据
+unsigned char Rec_Data(unsigned char * dat_buff)
+{
+  unsigned char status;
+  unsigned char RfPlwid;
+	if(SPI_Read_Reg(RF_STATUS) & RX_DR)  //如果触发接收中断
+	{   
+		RF_CE_Low();//拉高CE
+		status = SPI_Read_Reg(RF_SETUP);
+		if((status & 0x0e) != 0x0e)
+		{
+			RfPlwid = SPI_Read_Reg(R_RX_PL_WID);
+			Read_RF_Buff(R_RX_PLOAD,dat_buff,RfPlwid); //读取有效数据
+		}
+		SPI_Write_Reg(FLUSH_RX, CMD_NOP);//清空RX FIFO
+		SPI_Write_Reg(W_REGISTER+RF_STATUS,(SPI_Read_Reg(RF_STATUS)|RX_DR));
+		RF_CE_High();//拉高CE
+		return 1;
+	}
+	else
+	{
+		return 0;
+	}
+}
+
