@@ -26,7 +26,7 @@
 #define CSN_Low                   GPIO_WriteBit(SPI_GPIOX, GPIO_Pin_14, Bit_SET);
 #define CSN_High                  GPIO_WriteBit(SPI_GPIOX, GPIO_Pin_14, Bit_RESET);
 
-#define Read_DATA                 GPIO_ReadInputDataBit(SPI_GPIOX,GPIO_Pin_12)
+#define Read_DATA                 GPIO_ReadOutputDataBit(SPI_GPIOX,GPIO_Pin_12)
 
 /*********************************************** 四线SPI ***********************************************************/
 #else//-----------------------------------------------------------------------------------------

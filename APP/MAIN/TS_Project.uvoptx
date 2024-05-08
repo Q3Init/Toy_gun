@@ -1036,7 +1036,7 @@
       <GroupNumber>12</GroupNumber>
       <FileNumber>58</FileNumber>
       <FileType>1</FileType>
-      <tvExp>1</tvExp>
+      <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
       <PathWithFileName>..\..\ext-driver\XL2400P_Drivers\SPI\RF_SPI.c</PathWithFileName>

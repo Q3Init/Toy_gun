@@ -26,7 +26,9 @@ void RF_Init(void)
 	Write_RF_Buff(W_REGISTER+ANALOG_CFG3 , RF_Init_Buff , 6);
 	 
     /* 配置应答数据通道道 */
-	SPI_Write_Reg(W_REGISTER + EN_AA,     0x00);//不使用应答
+	//SPI_Write_Reg(W_REGISTER + EN_AA,     0x00);//不使用应答
+	SPI_Write_Reg(W_REGISTER + EN_AA,     0x1f);//启用应答
+
 
     /* 配置使能地址 */
 	SPI_Write_Reg(W_REGISTER + EN_RXADDR, 0x3f);//使能数据通道0-5
@@ -41,12 +43,13 @@ void RF_Init(void)
 	SPI_Write_Reg(W_REGISTER + RF_SETUP, C_DR_250K);//配置通讯速率为250Kpbs
 
     /* 配置数据通道0&数据通道1 接收包长度 */
-	RF_Init_Buff[0] = RF_PACKET_SIZE;
-	RF_Init_Buff[1] = RF_PACKET_SIZE;
-	Write_RF_Buff(W_REGISTER+RX_PW_PX, RF_Init_Buff ,2);
+	// RF_Init_Buff[0] = RF_PACKET_SIZE;
+	// RF_Init_Buff[1] = RF_PACKET_SIZE;
+	// Write_RF_Buff(W_REGISTER+RX_PW_PX, RF_Init_Buff ,2);
 
     /* 配置PIPE动态长度使能位 */
-	SPI_Write_Reg(W_REGISTER+DYNPD, 0x00);//不使能
+	//SPI_Write_Reg(W_REGISTER+DYNPD, 0x00);//不使能
+	SPI_Write_Reg(W_REGISTER+DYNPD, 0x3f);//使能动态长度
 
 //配置其他RF特性:
 //bit7&6=00 发送寄存器地址时返回State
@@ -56,7 +59,9 @@ void RF_Init(void)
 //bit2=0 动态长度功能打开
 //bit1=0 ACK不用带PL
 //bit0=0 未开启W_TX_PAYLOAD_NOACK模式
-	SPI_Write_Reg(W_REGISTER+FEATURE, 0x18);
+
+	//SPI_Write_Reg(W_REGISTER+FEATURE, 0x18);
+	SPI_Write_Reg(W_REGISTER+FEATURE, 0x1c);//打开动态长度功能
 
 //-----------------------------------------------------------------------------------------------
 	RF_Set_Power(C_RF6dBm);//设置发射功率
@@ -99,9 +104,12 @@ void RF_Reset(void)
 //设置频点
 void RF_Set_Chn(unsigned char Chn)
 {
-	SPI_Write_Reg(W_REGISTER + EN_AA, 0x00);
+	// SPI_Write_Reg(W_REGISTER + EN_AA, 0x00);
+	// SPI_Write_Reg(W_REGISTER + RF_CH, Chn + 0x60);
+	// SPI_Write_Reg(W_REGISTER + EN_AA, 0x40);	
+	SPI_Write_Reg(W_REGISTER + EN_AA, 0x1f);
 	SPI_Write_Reg(W_REGISTER + RF_CH, Chn + 0x60);
-	SPI_Write_Reg(W_REGISTER + EN_AA, 0x40);							
+	SPI_Write_Reg(W_REGISTER + EN_AA, 0x7f);				//AFC锁定							
 }
 
 //设置地址
@@ -190,53 +198,19 @@ void RFAPIChannelNext_RX(void)
 //发送动态长度数据
 //参数1 发送数据的地址
 //参数2 发送数据的长度
-unsigned char RF_Send_Data(unsigned char *Data_Buff)
-{
-	unsigned char y=200;//发送等待时间
-	unsigned char RetVaule=0;//状态寄存器的值
-	
-    SPI_Write_Reg(FLUSH_TX, CMD_NOP);//清空TX FIFO
 
-	Write_RF_Buff(W_TX_PLOAD,Data_Buff,RF_PACKET_SIZE);//填写发送内容
+unsigned char RF_Send_Data(unsigned char *Data_Buff ,unsigned char Send_Len)
+{
+	uint8_t Send_State=0;
+	SPI_Write_Reg(FLUSH_TX, CMD_NOP);//清空TX FIFO
+	Write_RF_Buff(W_TX_PLOAD,Data_Buff,Send_Len);//填写发送内容 发送
 
 	RF_CE_High();//拉高CE
-	DelayUs(100);//延时100微妙
+	DelayUs(100);
 	RF_CE_Low();//拉低CE
-	while(y--)//等待																	
-	{
-		DelayUs(100);//延时
-		RetVaule = SPI_Read_Reg(R_REGISTER+RF_STATUS);//读取状态寄存器
-		if((RetVaule&(MAX_RT|TX_DS)) != 0)	//	如果达到最大发送次数 或者 触发发送完成中断 代表发送完成								
-		{
-			Log_d("Send OK!\r\n");//打印发送完成
-			break;//跳出程序
-		}
-	}
-	return RetVaule;
+	/*此时发送数据流程已经完成 下面查询状态寄存器*/
+	DelayMs(1);
+	Send_State = SPI_Read_Reg(R_REGISTER+RF_STATUS);
+	Log_d("%x\r\n" , Send_State);
+	return Send_State;
 }
-
-//接收数据
-unsigned char Rec_Data(unsigned char * dat_buff)
-{
-  unsigned char status;
-  unsigned char RfPlwid;
-	if(SPI_Read_Reg(RF_STATUS) & RX_DR)  //如果触发接收中断
-	{   
-		RF_CE_Low();//拉高CE
-		status = SPI_Read_Reg(RF_SETUP);
-		if((status & 0x0e) != 0x0e)
-		{
-			RfPlwid = SPI_Read_Reg(R_RX_PL_WID);
-			Read_RF_Buff(R_RX_PLOAD,dat_buff,RfPlwid); //读取有效数据
-		}
-		SPI_Write_Reg(FLUSH_RX, CMD_NOP);//清空RX FIFO
-		SPI_Write_Reg(W_REGISTER+RF_STATUS,(SPI_Read_Reg(RF_STATUS)|RX_DR));
-		RF_CE_High();//拉高CE
-		return 1;
-	}
-	else
-	{
-		return 0;
-	}
-}
-

@@ -40,7 +40,7 @@ void APP_test_mainfunction(void)
         tick = 0;
         RF_Reset();//复位RF
         RFAPIChannelNext();//跳频
-        RF_Send_Data(Send_Test);//发送数据
+        RF_Send_Data(Send_Test,8);//发送数据
     }
 }
 
